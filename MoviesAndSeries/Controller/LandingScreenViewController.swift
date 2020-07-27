@@ -8,7 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LandingScreenViewController: UIViewController {
+    
+    var landingScreenView = LandingScreenView()
+    
+    override func loadView() {
+        
+        view = landingScreenView
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
