@@ -13,6 +13,7 @@
 		E6CA0F0824CF6B0C00B7555A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6CA0F0724CF6B0C00B7555A /* Assets.xcassets */; };
 		E6CA0F0B24CF6B0C00B7555A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6CA0F0924CF6B0C00B7555A /* LaunchScreen.storyboard */; };
 		E6CA0F1624CF75E800B7555A /* LandingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CA0F1524CF75E800B7555A /* LandingScreenView.swift */; };
+		E6CA0F1824D0635300B7555A /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CA0F1724D0635300B7555A /* MoviesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E6CA0F0A24CF6B0C00B7555A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6CA0F0C24CF6B0C00B7555A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6CA0F1524CF75E800B7555A /* LandingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingScreenView.swift; sourceTree = "<group>"; };
+		E6CA0F1724D0635300B7555A /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				E6CA0F0224CF6B0A00B7555A /* LandingScreenViewController.swift */,
+				E6CA0F1724D0635300B7555A /* MoviesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6CA0F0324CF6B0A00B7555A /* LandingScreenViewController.swift in Sources */,
+				E6CA0F1824D0635300B7555A /* MoviesViewController.swift in Sources */,
 				E6CA0EFF24CF6B0A00B7555A /* AppDelegate.swift in Sources */,
 				E6CA0F1624CF75E800B7555A /* LandingScreenView.swift in Sources */,
 				E6CA0F0124CF6B0A00B7555A /* SceneDelegate.swift in Sources */,

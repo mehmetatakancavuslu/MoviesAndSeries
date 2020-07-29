@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LandingScreenViewController: UIViewController {
+class LandingScreenViewController: UIViewController, LandingScreenDelegate {
     
     var landingScreenView = LandingScreenView()
     
@@ -20,9 +20,18 @@ class LandingScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        landingScreenView.delegate = self
+        
     }
-
+    
+    func exploreButtonTapped() {
+        
+        let moviesVC = MoviesViewController()
+        
+        
+        
+    }
 
 }
 

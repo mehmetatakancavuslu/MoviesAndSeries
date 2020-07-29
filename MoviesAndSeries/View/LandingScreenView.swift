@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol LandingScreenDelegate: class {
+    
+    func exploreButtonTapped()
+    
+}
+
 class LandingScreenView: UIView {
+    
+    weak var delegate: LandingScreenDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -129,7 +137,9 @@ class LandingScreenView: UIView {
     // MARK: - UIButton selectors
     
     @objc func exploreButtonTapped(_ sender: UIButton) {
-        print("Tap!")
+        
+        self.delegate?.exploreButtonTapped()
+        
     }
     
 }
