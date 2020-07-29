@@ -14,8 +14,8 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .red
+        self.title = "A"
 
-        // Do any additional setup after loading the view.
     }
 
 }
