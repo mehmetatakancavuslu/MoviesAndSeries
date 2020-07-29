@@ -13,7 +13,10 @@ class ArtistsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
+        navigationController?.navigationBar.barTintColor = UIColor(red: 250/256, green: 250/256, blue: 250/256, alpha: 1.0)
+        
+        self.title = "Artists"
+        self.view.backgroundColor = UIColor(red: 225/256, green: 225/256, blue: 225/256, alpha: 1.0)
         
     }
 
