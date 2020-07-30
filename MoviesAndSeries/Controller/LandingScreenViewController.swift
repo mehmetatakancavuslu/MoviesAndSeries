@@ -14,7 +14,7 @@ class LandingScreenViewController: UIViewController, LandingScreenDelegate {
     
     override func loadView() {
         
-        view = landingScreenView
+        self.view = landingScreenView
         
     }
 

@@ -17,10 +17,9 @@ class TabBarController: UITabBarController {
         let seriesViewController = UINavigationController(rootViewController: SeriesViewController())
         let artistsViewController = UINavigationController(rootViewController: ArtistsViewController())
         
-        // TODO: Change tabBarItem icons.
-        moviesViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        seriesViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-        artistsViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        moviesViewController.tabBarItem = UITabBarItem(title: "Movies", image: #imageLiteral(resourceName: "moviesIcon"), tag: 0)
+        seriesViewController.tabBarItem = UITabBarItem(title: "TV Series", image: #imageLiteral(resourceName: "seriesIcon"), tag: 1)
+        artistsViewController.tabBarItem = UITabBarItem(title: "Artists", image: #imageLiteral(resourceName: "artistsIcon"), tag: 2)
 
         let tabBarList = [moviesViewController, seriesViewController, artistsViewController]
         viewControllers = tabBarList
