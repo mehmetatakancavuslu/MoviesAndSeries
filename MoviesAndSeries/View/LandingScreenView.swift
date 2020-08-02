@@ -134,7 +134,7 @@ class LandingScreenView: UIView {
         exploreButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70).isActive = true
     }
     
-    // MARK: - UIButton selectors
+    // MARK: - Delegate methods
     
     @objc func exploreButtonTapped(_ sender: UIButton) {
         

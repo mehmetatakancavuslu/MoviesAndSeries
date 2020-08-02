@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol MoviesDelegate: class {
+    
+}
+
 class MoviesView: UIView {
+    
+    weak var delegate: MoviesDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,10 +34,16 @@ class MoviesView: UIView {
         self.addSubview(scrollView)
         scrollView.addSubview(popularLabel)
         scrollView.addSubview(popularCollectionView)
+        popularCollectionView.delegate = self
+        popularCollectionView.dataSource = self
         scrollView.addSubview(recentLabel)
         scrollView.addSubview(recentCollectionView)
+        recentCollectionView.delegate = self
+        recentCollectionView.dataSource = self
         scrollView.addSubview(soonLabel)
         scrollView.addSubview(soonCollectionView)
+        soonCollectionView.delegate = self
+        soonCollectionView.dataSource = self
     }
     
     func setupSubviews() {
@@ -64,9 +76,10 @@ class MoviesView: UIView {
     
     private let popularCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = UIColor(red: 220/256, green: 220/256, blue: 220/256, alpha: 1.0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -82,9 +95,10 @@ class MoviesView: UIView {
     
     private let recentCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = UIColor(red: 220/256, green: 220/256, blue: 220/256, alpha: 1.0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -100,9 +114,10 @@ class MoviesView: UIView {
     
     private let soonCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = UIColor(red: 220/256, green: 220/256, blue: 220/256, alpha: 1.0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -125,8 +140,8 @@ class MoviesView: UIView {
     
     func setupPopularCollectionView() {
         popularCollectionView.topAnchor.constraint(equalTo: popularLabel.bottomAnchor, constant: 10).isActive = true
-        popularCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        popularCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0).isActive = true
+        popularCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
+        popularCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         popularCollectionView.heightAnchor.constraint(equalToConstant: 230).isActive = true
     }
     
@@ -139,8 +154,8 @@ class MoviesView: UIView {
     
     func setupRecentCollectionView() {
         recentCollectionView.topAnchor.constraint(equalTo: recentLabel.bottomAnchor, constant: 10).isActive = true
-        recentCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        recentCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0).isActive = true
+        recentCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
+        recentCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         recentCollectionView.heightAnchor.constraint(equalToConstant: 230).isActive = true
     }
     
@@ -153,11 +168,41 @@ class MoviesView: UIView {
     
     func setupSoonCollectionView() {
         soonCollectionView.topAnchor.constraint(equalTo: soonLabel.bottomAnchor, constant: 10).isActive = true
-        soonCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        soonCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10).isActive = true
         soonCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
-        soonCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0).isActive = true
+        soonCollectionView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         soonCollectionView.heightAnchor.constraint(equalToConstant: 230).isActive = true
     }
     
     // MARK: - UIButton selectors
+        
+}
+
+// MARK: - CollectionView Delegates and Data Source
+
+extension MoviesView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView {
+        case popularCollectionView:
+            return 5
+        case recentCollectionView:
+            return 5
+        case soonCollectionView:
+            return 5
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = popularCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .darkGray
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: popularCollectionView.frame.height*0.6, height: popularCollectionView.frame.height)
+    }
+    
 }
