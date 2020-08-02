@@ -22,10 +22,8 @@ class MoviesView: UIView {
         setupSubviews()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        createSubviews()
-        setupSubviews()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Subview setup convenience functions
@@ -78,7 +76,7 @@ class MoviesView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = UIColor(red: 220/256, green: 220/256, blue: 220/256, alpha: 1.0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -97,7 +95,7 @@ class MoviesView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = UIColor(red: 220/256, green: 220/256, blue: 220/256, alpha: 1.0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -116,7 +114,7 @@ class MoviesView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.backgroundColor = UIColor(red: 220/256, green: 220/256, blue: 220/256, alpha: 1.0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -191,18 +189,40 @@ extension MoviesView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSo
         case soonCollectionView:
             return 5
         default:
-            return 0
+            fatalError("Error, collection view not in view to return the numberOfItemsInSection")
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = popularCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .darkGray
-        return cell
+        switch collectionView {
+        case popularCollectionView:
+            let cell = popularCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovieCell
+            cell.backgroundColor = .darkGray
+            return cell
+        case recentCollectionView:
+            let cell = recentCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovieCell
+            cell.backgroundColor = .darkGray
+            return cell
+        case soonCollectionView:
+            let cell = soonCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovieCell
+            cell.backgroundColor = .darkGray
+            return cell
+        default:
+            fatalError("Error, collection view not in view to return the cellForItemAt")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: popularCollectionView.frame.height*0.6, height: popularCollectionView.frame.height)
+        switch collectionView {
+        case popularCollectionView:
+            return CGSize(width: popularCollectionView.frame.height*0.6, height: popularCollectionView.frame.height)
+        case recentCollectionView:
+            return CGSize(width: popularCollectionView.frame.height*0.6, height: popularCollectionView.frame.height)
+        case soonCollectionView:
+            return CGSize(width: popularCollectionView.frame.height*0.6, height: popularCollectionView.frame.height)
+        default:
+            fatalError("Error, collection view not in view to return the sizeForItemAt")
+        }
     }
     
 }
